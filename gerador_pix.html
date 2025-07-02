@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElitePlay76 - Gerar PIX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a14;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    header {
+      background-color: #1b1b2f;
+      padding: 20px;
+    }
+    header h1 {
+      color: #7f00ff;
+      margin: 0;
+    }
+    .form-container {
+      background-color: #1e1e2e;
+      padding: 20px;
+      max-width: 400px;
+      margin: 30px auto;
+      border-radius: 12px;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 90%;
+      border-radius: 8px;
+      border: none;
+    }
+    .btn {
+      background-color: #7f00ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background-color: #5500aa;
+    }
+    .qr-result {
+      margin-top: 30px;
+    }
+    .qr-img {
+      margin: 20px 0;
+    }
+    .pix-code {
+      background-color: #000;
+      padding: 10px;
+      border-radius: 8px;
+      word-break: break-all;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #111;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ElitePlay76 - Gerador de PIX</h1>
+</header>
+
+<div class="form-container">
+  <h2>Gerar pagamento via PIX</h2>
+  <input type="text" id="chave" placeholder="Chave PIX (ex: email ou CPF)">
+  <input type="number" id="valor" placeholder="Valor (ex: 10.50)">
+  <button class="btn" onclick="gerarPix()">Gerar PIX</button>
+</div>
+
+<div class="qr-result" id="resultado" style="display:none;">
+  <h3>Escaneie ou copie o código:</h3>
+  <div class="qr-img">
+    <img id="qrImage" src="" alt="QR Code PIX" width="200" height="200">
+  </div>
+  <div class="pix-code" id="pixCodeText"></div>
+  <button class="btn" onclick="copiarPix()">📋 Copiar Código PIX</button>
+</div>
+
+<footer>
+  © 2025 ElitePlay76 — Pagamento Seguro via PIX
+</footer>
+
+<script>
+  function gerarPix() {
+    const chave = document.getElementById("chave").value.trim();
+    const valor = document.getElementById("valor").value.trim();
+    if (!chave || !valor) {
+      alert("Preencha a chave e o valor.");
+      return;
+    }
+
+    const payload = `chave:${chave}|valor:${valor}`;
+    document.getElementById("pixCodeText").innerText = payload;
+    document.getElementById("qrImage").src = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(payload)}&size=200x200`;
+    document.getElementById("resultado").style.display = "block";
+  }
+
+  function copiarPix() {
+    const text = document.getElementById("pixCodeText").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Código PIX copiado com sucesso!");
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElitePlay76 - Pagamento PIX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a14;
+      color: #fff;
+      text-align: center;
+    }
+    header {
+      background-color: #1b1b2f;
+      padding: 20px;
+    }
+    header h1 {
+      color: #7f00ff;
+      margin: 0;
+    }
+    .pix-section {
+      margin: 40px auto;
+      max-width: 400px;
+      background-color: #1e1e2e;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .pix-section h2 {
+      color: #00ffcc;
+    }
+    .qr-img {
+      margin: 20px 0;
+      width: 200px;
+      height: 200px;
+      background: #fff;
+      display: inline-block;
+      border-radius: 10px;
+    }
+    .pix-code {
+      background-color: #000;
+      padding: 10px;
+      border-radius: 8px;
+      word-break: break-all;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .copy-btn {
+      background-color: #7f00ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background-color: #5500aa;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #111;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ElitePlay76 - Pagamento via PIX</h1>
+</header>
+
+<section class="pix-section">
+  <h2>Escaneie o QR Code ou copie o código abaixo</h2>
+  <div class="qr-img">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=chavepix1234567890valor440&size=200x200" alt="QR Code PIX">
+  </div>
+  <div class="pix-code" id="pixCode">
+    chavepix1234567890valor440
+  </div>
+  <button class="copy-btn" onclick="copyPIX()">📋 Copiar Código PIX</button>
+</section>
+
+<footer>
+  © 2025 ElitePlay76 — Pagamento Seguro via PIX
+</footer>
+
+<script>
+  function copyPIX() {
+    const code = document.getElementById("pixCode").innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      alert("Código PIX copiado com sucesso!");
+    });
+  }
+</script>
+
+</body>
+</html>
